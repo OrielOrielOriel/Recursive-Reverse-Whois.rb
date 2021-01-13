@@ -21,6 +21,10 @@ def search(searchTerm)
 	dataSource = "https://www.reversewhois.io/?searchterm=" + searchTerm
 
 	response = Excon.get(dataSource)
+
+    if response.status != 200
+      return "Error. Reversewhois.io did not return HTTP 200"
+    end
 	
 	return response.body	
 end
